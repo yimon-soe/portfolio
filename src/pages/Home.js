@@ -236,10 +236,6 @@ function Home() {
         <div className="content-wrap">
           {/* Hero */}
           <div className="hero">
-            <div className="cert-badge">
-              <span>✦</span> AWS Certified Developer Associate
-            </div>
-
             {/* NAME — Outfit 800, tall, open, airy */}
             <h1 style={{
               fontFamily: "'Outfit', sans-serif",
