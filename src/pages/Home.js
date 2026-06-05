@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
 const skills = {
   Languages: ['Java', 'Python', 'PHP', 'Bash'],
@@ -30,7 +30,7 @@ function Tag({ children }) {
       color: '#58a6ff',
       border: '1px solid rgba(56, 139, 253, 0.25)',
       borderRadius: '20px',
-      fontSize: '0.75rem',
+      fontSize: '0.72rem',
       fontFamily: "'JetBrains Mono', monospace",
       letterSpacing: '0.02em',
       margin: '3px',
@@ -60,7 +60,7 @@ function Section({ title, children, delay = 0 }) {
         }} />
         <h3 style={{
           margin: 0,
-          fontSize: '0.7rem',
+          fontSize: '0.68rem',
           fontFamily: "'JetBrains Mono', monospace",
           letterSpacing: '0.18em',
           textTransform: 'uppercase',
@@ -85,7 +85,7 @@ function TimelineItem({ title, place, period }) {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        paddingTop: '4px',
+        paddingTop: '5px',
       }}>
         <div style={{
           width: '8px',
@@ -97,9 +97,9 @@ function TimelineItem({ title, place, period }) {
         <div style={{ width: '1px', flex: 1, background: 'rgba(88,166,255,0.15)', minHeight: '24px', marginTop: '4px' }} />
       </div>
       <div>
-        <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#e6edf3', lineHeight: 1.3 }}>{title}</div>
-        <div style={{ fontSize: '0.78rem', color: '#8b949e', marginTop: '2px', fontFamily: "'JetBrains Mono', monospace" }}>{place}</div>
-        <div style={{ fontSize: '0.72rem', color: '#58a6ff', marginTop: '2px', opacity: 0.8 }}>{period}</div>
+        <div style={{ fontFamily: "'Inter', sans-serif", fontSize: '0.9rem', fontWeight: 600, color: '#e6edf3', lineHeight: 1.4 }}>{title}</div>
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.72rem', color: '#8b949e', marginTop: '2px' }}>{place}</div>
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.68rem', color: '#58a6ff', marginTop: '2px', opacity: 0.85 }}>{period}</div>
       </div>
     </div>
   );
@@ -109,24 +109,11 @@ function Home() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@700;800&family=Inter:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@700;800;900&family=Inter:wght@400;500;600&display=swap');
 
         @keyframes fadeUp {
           from { opacity: 0; transform: translateY(18px); }
           to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes gradientShift {
-          0%   { background-position: 0% 50%; }
-          50%  { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        @keyframes pulse {
-          0%, 100% { opacity: 0.5; transform: scale(1); }
-          50%       { opacity: 0.9; transform: scale(1.08); }
-        }
-        @keyframes scanline {
-          0%   { transform: translateY(-100%); }
-          100% { transform: translateY(100vh); }
         }
 
         .home-root {
@@ -179,7 +166,7 @@ function Home() {
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          padding: '4px 12px';
+          padding: 4px 14px;
           background: rgba(126,232,162,0.08);
           border: 1px solid rgba(126,232,162,0.2);
           border-radius: 20px;
@@ -187,7 +174,7 @@ function Home() {
           font-size: 0.72rem;
           font-family: 'JetBrains Mono', monospace;
           letter-spacing: 0.06em;
-          margin-bottom: 16px;
+          margin-bottom: 28px;
         }
 
         .highlight-grid {
@@ -208,7 +195,7 @@ function Home() {
           background: rgba(22, 27, 34, 0.8);
           border: 1px solid rgba(48,54,61,0.8);
           border-radius: 12px;
-          padding: 16px;
+          padding: 18px 12px;
           text-align: center;
           transition: border-color 0.2s, transform 0.2s;
         }
@@ -233,7 +220,7 @@ function Home() {
           flex-direction: column;
           gap: 6px;
         }
-        .skill-row:nth-child(odd) { padding-right: 24px; }
+        .skill-row:nth-child(odd)  { padding-right: 24px; }
         .skill-row:nth-child(even) { padding-left: 24px; border-left: 1px solid rgba(48,54,61,0.5); }
 
         .divider {
@@ -252,28 +239,38 @@ function Home() {
             <div className="cert-badge">
               <span>✦</span> AWS Certified Developer Associate
             </div>
+
+            {/* NAME — Outfit 800, tall, open, airy */}
             <h1 style={{
-              fontFamily: "'Syne', sans-serif",
-              fontSize: 'clamp(2.4rem, 6vw, 3.8rem)',
+              fontFamily: "'Outfit', sans-serif",
+              fontSize: 'clamp(3.6rem, 8vw, 5.5rem)',
               fontWeight: 800,
-              margin: '0 0 8px',
+              margin: '0 0 14px',
               color: '#e6edf3',
-              letterSpacing: '-0.02em',
-              lineHeight: 1.05,
+              letterSpacing: '0.06em',
+              lineHeight: 1.15,
             }}>
               Yimon Soe
             </h1>
+
+            {/* ROLE — JetBrains Mono */}
             <p style={{
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: '0.82rem',
+              fontSize: '0.75rem',
               color: '#58a6ff',
-              letterSpacing: '0.08em',
-              margin: '0 0 20px',
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              margin: '0 0 22px',
+              lineHeight: 1.7,
             }}>
-              SR. SOFTWARE ENGINEER · CLOUD & BACKEND · DATA ENGINEERING
+              Sr. Software Engineer · Cloud & Backend · Data Engineering
             </p>
+
+            {/* BIO — Inter */}
             <p style={{
+              fontFamily: "'Inter', sans-serif",
               fontSize: '0.95rem',
+              fontWeight: 400,
               color: '#8b949e',
               maxWidth: '600px',
               lineHeight: 1.75,
@@ -289,9 +286,9 @@ function Home() {
           <div className="highlight-grid">
             {highlights.map((h, i) => (
               <div key={i} className="highlight-card">
-                <div style={{ fontSize: '1.4rem', marginBottom: '6px' }}>{h.icon}</div>
-                <div style={{ fontFamily: "'Syne', sans-serif", fontWeight: 700, fontSize: '1rem', color: '#e6edf3' }}>{h.label}</div>
-                <div style={{ fontSize: '0.72rem', color: '#8b949e', marginTop: '2px', fontFamily: "'JetBrains Mono', monospace" }}>{h.sub}</div>
+                <div style={{ fontSize: '1.3rem', marginBottom: '8px' }}>{h.icon}</div>
+                <div style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 700, fontSize: '0.95rem', color: '#e6edf3', marginBottom: '4px' }}>{h.label}</div>
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.68rem', color: '#8b949e', letterSpacing: '0.04em' }}>{h.sub}</div>
               </div>
             ))}
           </div>
@@ -304,7 +301,7 @@ function Home() {
               {Object.entries(skills).map(([cat, items]) => (
                 <div key={cat} className="skill-row">
                   <span style={{
-                    fontSize: '0.7rem',
+                    fontSize: '0.68rem',
                     fontFamily: "'JetBrains Mono', monospace",
                     color: '#7ee8a2',
                     letterSpacing: '0.1em',
