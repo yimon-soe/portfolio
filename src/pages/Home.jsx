@@ -434,7 +434,7 @@ function Home() {
               <div className="cta-row">
                 <a className="btn btn-primary" href="mailto:yimonsoe.yms@gmail.com">Get in touch →</a>
                 <a className="btn btn-ghost" href="https://www.linkedin.com/in/yimon/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <a className="btn btn-ghost" href="https://github.com/ymsyms" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a className="btn btn-ghost" href="https://github.com/yimon-soe" target="_blank" rel="noopener noreferrer">GitHub</a>
               </div>
 
           </div>
