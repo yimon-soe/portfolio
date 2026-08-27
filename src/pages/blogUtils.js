@@ -1,163 +1,175 @@
 import React from 'react';
 
 /* ─────────────────────────────────────────────
-   GLOBAL STYLES (import once in Blog.jsx)
+   GLOBAL BLOG STYLES
+   Fonts + keyframes + shared "post-body" typography
+   used by every post's <Article>. Drop once at the
+   top of Blog.jsx.
 ───────────────────────────────────────────── */
 export function BlogStyles() {
   return (
     <style>{`
-      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap');
+
       @keyframes fadeUp {
-        from { opacity:0; transform:translateY(18px); }
-        to   { opacity:1; transform:translateY(0); }
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      .post-body h3 {
+        font-family: 'Syne', sans-serif;
+        font-weight: 700;
+        font-size: 1.15rem;
+        color: #e6edf3;
+        margin: 2.2rem 0 0.9rem;
+        letter-spacing: -0.01em;
+      }
+      .post-body p {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.95rem;
+        line-height: 1.85;
+        color: #a3adba;
+        margin: 0 0 1.1rem;
+      }
+      .post-body ul {
+        margin: 0 0 1.3rem;
+        padding-left: 20px;
+        color: #a3adba;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.93rem;
+        line-height: 1.8;
+      }
+      .post-body li { margin-bottom: 6px; }
+      .post-body li::marker { color: #58a6ff; }
+      .post-body strong { color: #e6edf3; font-weight: 600; }
+      .post-body blockquote {
+        margin: 1.6rem 0;
+        padding: 4px 0 4px 18px;
+        border-left: 2px solid rgba(88,166,255,0.4);
+        font-style: italic;
+        color: #8b949e;
+      }
+      .post-body code {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.82em;
+        background: rgba(88,166,255,0.1);
+        color: #7ee8a2;
+        padding: 2px 6px;
+        border-radius: 4px;
       }
     `}</style>
   );
 }
 
 /* ─────────────────────────────────────────────
-   CHIP — tech tag pill
+   CHIP — small tag pill, colored per post accent
 ───────────────────────────────────────────── */
 export function Chip({ children, color = '#58a6ff' }) {
   return (
     <span style={{
       display: 'inline-block',
-      padding: '2px 10px',
-      background: `${color}14`,
-      color,
-      border: `1px solid ${color}30`,
-      borderRadius: 20,
-      fontSize: '0.7rem',
       fontFamily: "'JetBrains Mono', monospace",
-      margin: '3px 3px 3px 0',
+      fontSize: '0.66rem',
+      letterSpacing: '0.02em',
+      color,
+      background: `${color}1a`,
+      border: `1px solid ${color}40`,
+      borderRadius: 20,
+      padding: '3px 10px',
+      margin: '0 6px 6px 0',
     }}>{children}</span>
   );
 }
 
 /* ─────────────────────────────────────────────
-   SECTION LABEL — small uppercase rule heading
+   SECTION LABEL — small eyebrow row
 ───────────────────────────────────────────── */
 export function SectionLabel({ children }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '2.4rem 0 1.2rem' }}>
+    <div style={{
+      display: 'flex', alignItems: 'center', gap: 10, marginBottom: '1.6rem',
+    }}>
+      <span style={{ width: 22, height: 2, background: 'linear-gradient(90deg,#58a6ff,#7ee8a2)', borderRadius: 2 }} />
       <span style={{
-        width: 22, height: 2,
-        background: 'linear-gradient(90deg,#58a6ff,#7ee8a2)',
-        borderRadius: 2, display: 'inline-block',
-      }} />
-      <span style={{
-        fontFamily: "'JetBrains Mono', monospace",
-        fontSize: '0.65rem',
-        letterSpacing: '0.18em',
-        textTransform: 'uppercase',
-        color: '#484f58',
-        fontWeight: 500,
+        fontFamily: "'JetBrains Mono', monospace", fontSize: '0.68rem',
+        letterSpacing: '0.14em', textTransform: 'uppercase', color: '#8b949e',
       }}>{children}</span>
     </div>
   );
 }
 
 /* ─────────────────────────────────────────────
-   ENTRY — numbered timeline item inside a post
+   BACK BUTTON — standalone export, in case a post
+   file imports it directly instead of using <Article>.
+   (<Article> also renders this same button internally.)
 ───────────────────────────────────────────── */
-export function Entry({ num, title, tags, children, accent = '#58a6ff' }) {
+export function BackButton({ onClick, accent = '#58a6ff', children = '← back to blog' }) {
   return (
-    <div style={{ display: 'flex', gap: 18, marginBottom: '2rem' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 4 }}>
-        <div style={{
-          width: 9, height: 9, borderRadius: '50%',
-          background: accent, boxShadow: `0 0 7px ${accent}66`, flexShrink: 0,
-        }} />
-        <div style={{ width: 1, flex: 1, background: 'rgba(88,166,255,0.1)', marginTop: 4 }} />
-      </div>
-      <div style={{ flex: 1, paddingBottom: 6 }}>
-        <div style={{
-          fontFamily: "'JetBrains Mono', monospace",
-          fontSize: '0.65rem', color: accent, marginBottom: 4, letterSpacing: '0.08em',
-        }}>
-          {String(num).padStart(2, '0')}.
-        </div>
-        <h3 style={{
-          margin: '0 0 8px',
-          fontFamily: "'Syne', sans-serif",
-          fontSize: '1.05rem', fontWeight: 700, color: '#e6edf3', lineHeight: 1.3,
-        }}>{title}</h3>
-        <div style={{ marginBottom: 10 }}>
-          {tags.map(t => <Chip key={t}>{t}</Chip>)}
-        </div>
-        <p style={{ margin: 0, fontSize: '0.88rem', lineHeight: 1.85, color: '#8b949e' }}>{children}</p>
-      </div>
-    </div>
+    <button
+      onClick={onClick}
+      style={{
+        fontFamily: "'JetBrains Mono', monospace", fontSize: '0.75rem',
+        color: '#8b949e', background: 'none', border: 'none', cursor: 'pointer',
+        padding: 0, marginBottom: '2.2rem', display: 'inline-flex', alignItems: 'center', gap: 6,
+      }}
+      onMouseEnter={e => e.currentTarget.style.color = accent}
+      onMouseLeave={e => e.currentTarget.style.color = '#8b949e'}
+    >
+      {children}
+    </button>
   );
 }
 
 /* ─────────────────────────────────────────────
-   POST HEADER — reusable hero for any post
+   ARTICLE — shared template for every post.
+   Usage inside a PostN component:
+
+     export const meta = {
+       id: 'post2', title: '...', subtitle: '...',
+       category: 'Cloud & Integration', date: 'Aug 2026',
+       readTime: '5 min read', accent: '#7ee8a2',
+       tags: ['FME','Boomi','Redshift'],
+     };
+
+     export default function Post2({ onBack }) {
+       return (
+         <Article meta={meta} onBack={onBack}>
+           <h3>A heading</h3>
+           <p>Body copy…</p>
+         </Article>
+       );
+     }
 ───────────────────────────────────────────── */
-export function PostHeader({ post }) {
+export function Article({ meta, onBack, children }) {
   return (
-    <div style={{ marginBottom: '2.4rem' }}>
-      <div style={{
-        display: 'inline-flex', alignItems: 'center', gap: 6,
-        background: 'rgba(126,232,162,0.08)', border: '1px solid rgba(126,232,162,0.2)',
-        borderRadius: 20, padding: '4px 14px', marginBottom: 16,
-      }}>
+    <div style={{ animation: 'fadeUp 0.5s ease both' }}>
+      <BackButton onClick={onBack} accent={meta.accent} />
+
+      <div style={{ display: 'flex', gap: 14, alignItems: 'center', marginBottom: 14, flexWrap: 'wrap' }}>
         <span style={{
-          fontFamily: "'JetBrains Mono', monospace",
-          fontSize: '0.68rem', color: '#7ee8a2', letterSpacing: '0.06em',
-        }}>✦ {post.category}</span>
+          fontFamily: "'JetBrains Mono', monospace", fontSize: '0.68rem',
+          color: meta.accent, letterSpacing: '0.06em',
+        }}>{meta.category}</span>
+        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.68rem', color: '#484f58' }}>{meta.date}</span>
+        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.68rem', color: '#484f58' }}>{meta.readTime}</span>
       </div>
 
       <h1 style={{
-        fontFamily: "'Syne', sans-serif",
-        fontSize: 'clamp(1.8rem, 5vw, 2.8rem)',
-        fontWeight: 800, color: '#e6edf3',
-        margin: '0 0 14px', lineHeight: 1.1, letterSpacing: '-0.02em',
-      }}>{post.title}</h1>
+        fontFamily: "'Syne', sans-serif", fontWeight: 800,
+        fontSize: 'clamp(1.7rem, 4vw, 2.4rem)', color: '#e6edf3',
+        margin: '0 0 14px', lineHeight: 1.2, letterSpacing: '-0.01em',
+      }}>{meta.title}</h1>
 
       <p style={{
-        fontSize: '1rem', color: '#8b949e',
-        lineHeight: 1.75, maxWidth: 600, margin: '0 0 18px',
-      }}>{post.subtitle}</p>
+        fontFamily: "'DM Sans', sans-serif", fontSize: '1rem', color: '#8b949e',
+        lineHeight: 1.7, margin: '0 0 2.6rem', maxWidth: 600,
+      }}>{meta.subtitle}</p>
 
-      <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
-        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.72rem', color: '#484f58' }}>{post.date}</span>
-        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.72rem', color: '#484f58' }}>·</span>
-        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '0.72rem', color: '#484f58' }}>{post.readTime}</span>
-      </div>
+      <div className="post-body">{children}</div>
 
-      <div style={{ marginTop: 14 }}>
-        {post.tags.map(t => <Chip key={t}>{t}</Chip>)}
+      <div style={{ marginTop: '2.8rem', paddingTop: '1.6rem', borderTop: '1px solid rgba(48,54,61,0.6)' }}>
+        {meta.tags.map(t => <Chip key={t} color={meta.accent}>{t}</Chip>)}
       </div>
     </div>
-  );
-}
-
-/* ─────────────────────────────────────────────
-   BACK BUTTON
-───────────────────────────────────────────── */
-export function BackButton({ onBack }) {
-  return (
-    <button
-      onClick={onBack}
-      style={{
-        display: 'inline-flex', alignItems: 'center', gap: 8,
-        background: 'transparent', border: '1px solid rgba(48,54,61,0.8)',
-        color: '#8b949e', borderRadius: 8, padding: '6px 14px',
-        fontFamily: "'JetBrains Mono', monospace", fontSize: '0.75rem',
-        cursor: 'pointer', marginBottom: '2.4rem',
-        transition: 'color 0.2s, border-color 0.2s',
-      }}
-      onMouseEnter={e => {
-        e.currentTarget.style.color = '#e6edf3';
-        e.currentTarget.style.borderColor = 'rgba(88,166,255,0.4)';
-      }}
-      onMouseLeave={e => {
-        e.currentTarget.style.color = '#8b949e';
-        e.currentTarget.style.borderColor = 'rgba(48,54,61,0.8)';
-      }}
-    >
-      ← back to blog
-    </button>
   );
 }

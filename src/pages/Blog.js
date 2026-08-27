@@ -3,18 +3,23 @@ import { BlogStyles, Chip, SectionLabel } from './blogUtils';
 
 // ── Import posts ──────────────────────────────────────────────────────
 // To add a new post:
-//   1. Create PostN_YourTitle.jsx (copy Post1 as a template)
+//   1. Create PostN_YourTitle.jsx (copy Post2_EnterpriseIntegration as a template — it uses the shared <Article> wrapper)
 //   2. Import it + its meta below
 //   3. Add { meta: metaN, Component: PostN } to the POSTS array
 //
 import Post1, { meta as meta1 } from './Post1_AWSManufacturing';
-// import Post2, { meta as meta2 } from './Post2_SpringBootMicroservices';
-// import Post3, { meta as meta3 } from './Post3_SnowflakeDataModelling';
+import Post2, { meta as meta2 } from './Post2_EnterpriseIntegration';
+import Post3, { meta as meta3 } from './Post3_ServerlessMigration';
+import Post4, { meta as meta4 } from './Post4_CaptivePortal';
+import Post5, { meta as meta5 } from './Post5_SpringBootAPIs';
 
+// Newest first
 const POSTS = [
-  { meta: meta1, Component: Post1 },
-  // { meta: meta2, Component: Post2 },
-  // { meta: meta3, Component: Post3 },
+  { meta: meta2, Component: Post2 }, // Aug 2026 — Tiaki Wai
+  { meta: meta1, Component: Post1 }, // Mar 2022 — GlobalFoundries
+  { meta: meta3, Component: Post3 }, // Nov 2020 — GlobalFoundries
+  { meta: meta4, Component: Post4 }, // Jun 2018 — Expert Team
+  { meta: meta5, Component: Post5 }, // Mar 2016 — Acroquest Myanmar
 ];
 
 /* ─────────────────────────────────────────────
@@ -98,7 +103,7 @@ export default function Blog() {
                   Blog
                 </h1>
                 <p style={{ fontSize: '0.95rem', color: '#8b949e', margin: 0, lineHeight: 1.75, maxWidth: 500 }}>
-                  Engineering write-ups on cloud architecture, backend systems, data platforms, and lessons from production.
+                  Engineering write-ups on cloud architecture, backend systems, data platforms, and lessons from production — one post per chapter of my career so far.
                 </p>
               </div>
 
