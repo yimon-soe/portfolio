@@ -25,12 +25,16 @@ In the project directory, you can run:
 Runs the app in development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+### `CTRL+C`
+
+Stops the app in development mode.
+
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
 The app is optimized for the best performance.
 
-### `npm run deploy`
+### `npm run deploy` in your own terminal after commit code to GitHub
 
 Deploys the app to GitHub Pages.
 
